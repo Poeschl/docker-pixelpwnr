@@ -15,6 +15,13 @@ The contained pixelpwnr can be used like that
 
 to paint `images/image.png` towards the pixelflut server on your own machine. For more options look at [`--help`](https://github.com/timvisee/pixelpwnr#help).
 
+# Example
+
+An examle docker-compose file can be found in the `/example` folder. Navigate inside it and execute `docker-compose up` to start it.
+To take a look, use a vnc viewer on `localhost:5900` to see two clients pwning each other.
+
+As pixelflut server the [dockerized shoreline](https://github.com/Poeschl/docker-shoreline) is used.
+
 # Licence
 
 The included pixelpwnr application is under [GNU GPL-3.0](https://raw.githubusercontent.com/timvisee/pixelpwnr/master/LICENSE)
