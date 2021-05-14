@@ -1,25 +1,26 @@
-FROM alpine:3.12 as build
+FROM alpine:3.13 as build
 
 WORKDIR /opt
 
-RUN apk --update add --no-cache \
-    git=2.26.2-r0 \
-    ca-certificates=20191127-r4 \
-    ruby=2.7.1-r3 \
-    cargo=1.44.0-r0
+RUN apk add --no-cache \
+    git=2.30.2-r0 \
+    ca-certificates=20191127-r5 \
+    ruby=2.7.3-r0 \
+    cargo=1.47.0-r2
 
 ENV COMMIT_SHA 'fd8f35639dfaefef83ccb752bdc20434d208f0a6'
-RUN git clone https://github.com/timvisee/pixelpwnr.git -b master pixelpwnr && \
+RUN git config --global advice.detachedHead false && \
+    git clone https://github.com/timvisee/pixelpwnr.git -b master pixelpwnr && \
     cd pixelpwnr && \
     git checkout ${COMMIT_SHA} && \
-    cargo build --release
-RUN ls -al /opt/pixelpwnr/target/release
+    cargo build --release && \
+    ls -al /opt/pixelpwnr/target/release
 
 
-FROM alpine:3.12
+FROM alpine:3.13
 
 ENTRYPOINT ["pixelpwnr"]
 
-RUN apk --update add --no-cache libgcc=9.3.0-r2
+RUN apk add --no-cache libgcc=10.2.1_pre1-r3
 
 COPY --from=build /opt/pixelpwnr/target/release/pixelpwnr /usr/local/bin/pixelpwnr
