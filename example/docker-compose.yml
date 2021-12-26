@@ -1,29 +1,30 @@
 version: '3.3'
 
 services:
-  server:
-    image: poeschl/shoreline
-    ports:
-      - "5900:5900"
-    command: -w 100 -h 100
+  # server:
+  #   image: poeschl/shoreline
+  #   ports:
+  #     - "5900:5900"
+  #   command: -w 100 -h 100
 
   client1:
-    image: poeschl/pixelpwnr
-    depends_on:
-      - server
-    links:
-      - server:target
+    image: ghcr.io/poeschl/pixelpwnr
+    # depends_on:
+    #   - server
+    # links:
+    #   - server:target
     volumes:
       - ./images:/images
-    command: target:1234 -i /images/test1.png -w 100 -h 100
+    command: pixelflut.rc3.io:1234 -i /images/test1.png -x 1800 -y 490 -w 100 -h 100
 
   client2:
-    image: poeschl/pixelpwnr
-    depends_on:
-      - server
-    links:
-      - server:target
+    image: ghcr.io/poeschl/pixelpwnr
+    # depends_on:
+    #   - server
+    # links:
+    #   - server:target
     volumes:
       - ./images:/images
-    command: target:1234 -i /images/test2.jpg -w 100 -h 100
+    command: pixelflut.rc3.io:1234 -i /images/test1.png -x 1800 -y 490 -w 100 -h 100
+
 
