@@ -8,7 +8,7 @@ RUN apk add --no-cache \
     ruby=3.0.3-r0 \
     cargo=1.56.1-r0
 
-ENV COMMIT_SHA 'fd8f35639dfaefef83ccb752bdc20434d208f0a6'
+ENV COMMIT_SHA '0d83b3e0b54448a59844e330a36f2e4b0e19e611'
 RUN git config --global advice.detachedHead false && \
     git clone https://github.com/timvisee/pixelpwnr.git -b master pixelpwnr && \
     cd pixelpwnr && \
