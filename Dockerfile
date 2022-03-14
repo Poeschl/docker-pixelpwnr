@@ -4,7 +4,7 @@ WORKDIR /opt
 
 RUN apk add --no-cache \
     git=2.34.1-r0 \
-    ca-certificates=20191127-r7 \
+    ca-certificates=20211220-r0 \
     ruby=3.0.3-r0 \
     cargo=1.56.1-r0
 
