@@ -9,7 +9,7 @@ RUN apk add --no-cache \
     cargo=1.78.0-r0
 
 ENV COMMIT_SHA '38ce0f0c43b5072e35c19048dbe12301614f25ca'
-RUN --mount=type=cache,target=/usr/local/cargo/registry/ --mount=type=cache,target=/opt/pixelpwnr/target/release \
+RUN --mount=type=cache,target=/usr/local/cargo/registry/ --mount=type=cache,target=/opt/pixelpwnr \
     git config --global advice.detachedHead false && \
     git clone https://github.com/timvisee/pixelpwnr.git -b master pixelpwnr && \
     cd pixelpwnr && \
