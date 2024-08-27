@@ -9,14 +9,13 @@ RUN apk add --no-cache \
     cargo=1.78.0-r0
 
 ENV COMMIT_SHA '38ce0f0c43b5072e35c19048dbe12301614f25ca'
-RUN --mount=type=cache,target=/usr/local/cargo/registry/ --mount=type=cache,target=/opt/pixelpwnr \
+RUN --mount=type=cache,target=/usr/local/cargo/registry/ \
     git config --global advice.detachedHead false && \
     git clone https://github.com/timvisee/pixelpwnr.git -b master pixelpwnr && \
     cd pixelpwnr && \
     git checkout ${COMMIT_SHA} && \
     cargo build --release --verbose && \
-    ls -al /opt/pixelpwnr/target/release \
-    cp /opt/pixelpwnr/target/release/pixelpwnr /opt/pixelpwnr
+    ls -al /opt/pixelpwnr/target/release
 
 
 FROM alpine:3.20
@@ -25,4 +24,4 @@ ENTRYPOINT ["pixelpwnr"]
 
 RUN apk add --no-cache libgcc=13.2.1_git20240309-r0
 
-COPY --from=build /opt/pixelpwnr /usr/local/bin/pixelpwnr
+COPY --from=build /opt/pixelpwnr/target/release/pixelpwnr /usr/local/bin/pixelpwnr
