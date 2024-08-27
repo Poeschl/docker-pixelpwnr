@@ -13,7 +13,7 @@ RUN git config --global advice.detachedHead false && \
     git clone https://github.com/timvisee/pixelpwnr.git -b master pixelpwnr && \
     cd pixelpwnr && \
     git checkout ${COMMIT_SHA} && \
-    cargo build --release && \
+    cargo build --release --verbose && \
     ls -al /opt/pixelpwnr/target/release
 
 
